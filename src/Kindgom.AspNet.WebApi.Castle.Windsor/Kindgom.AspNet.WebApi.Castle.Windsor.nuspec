@@ -4,9 +4,9 @@
         <id>Kingdom.AspNet.WebApi.Castle.Windsor</id>
         <title>ASP.NET Web API Castle Windsor Bootstrap</title>
         <description>Castle Windsor Bootstrap for use with Microsoft ASP.NET Web API.</description>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <authors>Kingdom Software Ltd</authors>
-        <projectUrl>http://github.com/mwpowellhtx/Castle.Extensions</projectUrl>
+        <projectUrl>http://github.com/mwpowellhtx/Kingdom.Castle.Extensions</projectUrl>
         <tags>Castle Windsor ASP.NET Web API bootstrap</tags>
         <dependencies>
             <dependency id="Castle.Windsor" version="3.3.0" />
