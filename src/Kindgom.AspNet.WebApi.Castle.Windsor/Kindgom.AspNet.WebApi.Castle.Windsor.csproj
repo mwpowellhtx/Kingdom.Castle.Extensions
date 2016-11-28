@@ -75,7 +75,9 @@
     <Compile Include="Dependencies\IWindsorDependencyScope.cs" />
     <Compile Include="Dependencies\WindsorDependencyBase.cs" />
     <Compile Include="Dependencies\WindsorDependencyResolver.cs" />
+    <Compile Include="IWindsorContainerConfigurator.cs" />
     <Compile Include="IWindsorContainerRegistrar.cs" />
+    <Compile Include="WindsorContainerConfigurator.cs" />
     <Compile Include="WindsorContainerRegistrar.cs" />
     <None Include="Kindgom.AspNet.WebApi.Castle.Windsor.nuspec">
       <SubType>Designer</SubType>
