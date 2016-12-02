@@ -4,17 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{243DE800-ACF8-4E70-8059-58B6952CE98D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{63CFB4E1-1089-4838-B4BC-61A926D8DA9E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kingdom.Castle.Windsor.Web.Http</RootNamespace>
-    <AssemblyName>Kingdom.AspNet.WebApi.Castle.Windsor</AssemblyName>
+    <RootNamespace>CastleWindsor.WebApi.Console</RootNamespace>
+    <AssemblyName>CastleWindsor.WebApi.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,16 +23,15 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Kingdom.AspNet.WebApi.Castle.Windsor.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Kingdom.AspNet.WebApi.Castle.Windsor.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -77,10 +77,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,37 +87,19 @@
     <Compile Include="..\Shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Components\DefaultTraceWriter.cs" />
-    <Compile Include="Components\DefaultTraceManager.cs" />
-    <Compile Include="Components\DefaultExceptionHandler.cs" />
-    <Compile Include="Components\WindsorHttpControllerActivator.cs" />
-    <Compile Include="Dependencies\Disposable.cs" />
-    <Compile Include="Dependencies\IWindsorDependencyResolver.cs" />
-    <Compile Include="Dependencies\IWindsorDependencyScope.cs" />
-    <Compile Include="Dependencies\WindsorDependencyBase.cs" />
-    <Compile Include="Dependencies\WindsorDependencyResolver.cs" />
-    <Compile Include="IWindsorContainerConfigurationContinuation.cs" />
-    <Compile Include="IWindsorContainerRegistrar.cs" />
-    <Compile Include="MicroKernel\Registration\ApiControllerInstaller.cs" />
-    <Compile Include="MicroKernel\Registration\ApiServicesInstaller.cs" />
-    <Compile Include="MicroKernel\Registration\ContainerInstaller.cs" />
-    <Compile Include="MicroKernel\Registration\WebApiInstaller.cs" />
-    <Compile Include="MicroKernel\Registration\WindsorDependencyResolverInstaller.cs" />
-    <Compile Include="MicroKernel\Registration\WindsorInstallerBase.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="WindsorContainerConfigurationContinuation.cs" />
-    <Compile Include="WindsorContainerRegistrar.cs" />
-    <None Include="Kindgom.AspNet.WebApi.Castle.Windsor.nuspec">
-      <SubType>Designer</SubType>
-    </None>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dependencies\WindsorDependencyScope.cs" />
-    <Compile Include="WindsorExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Kindgom.AspNet.WebApi.Castle.Windsor\Kindgom.AspNet.WebApi.Castle.Windsor.csproj">
+      <Project>{243DE800-ACF8-4E70-8059-58B6952CE98D}</Project>
+      <Name>Kindgom.AspNet.WebApi.Castle.Windsor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

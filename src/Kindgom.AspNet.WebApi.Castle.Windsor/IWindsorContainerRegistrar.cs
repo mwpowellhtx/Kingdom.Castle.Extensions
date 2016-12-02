@@ -16,7 +16,7 @@ namespace Kingdom.Castle.Windsor.Web.Http
         /// </summary>
         /// <param name="getDependencyResolver"></param>
         /// <returns></returns>
-        IWindsorContainerConfigurator ConfigureDependencyResolver(
+        IWindsorContainerConfigurationContinuation ConfigureDependencyResolver(
             WindsorDependencyResolverFactory getDependencyResolver = null);
     }
 

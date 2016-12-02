@@ -1,8 +1,7 @@
-﻿using Castle.Windsor;
-
-namespace Kingdom.Castle.Windsor.Web.Http.Dependencies
+﻿namespace Kingdom.Castle.Windsor.Web.Http.Dependencies
 {
     using System.Web.Http.Dependencies;
+    using global::Castle.Windsor;
 
     /// <summary>
     /// Provides a Castle Windsor based <see cref="IDependencyResolver"/>.

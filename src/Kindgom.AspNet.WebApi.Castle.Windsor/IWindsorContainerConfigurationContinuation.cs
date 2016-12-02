@@ -5,18 +5,19 @@ namespace Kingdom.Castle.Windsor.Web.Http
     /// <summary>
     /// <see cref="IWindsorContainer"/> configurator.
     /// </summary>
-    public interface IWindsorContainerConfigurator
+    public interface IWindsorContainerConfigurationContinuation
     {
         /// <summary>
         /// Configures the <see cref="IWindsorContainer"/> after registration.
         /// </summary>
         /// <param name="configure"></param>
-        void ConfigureWindsorContainer(ConfigureContainerCallback configure = null);
+        /// <returns></returns>
+        IWindsorContainerConfigurationContinuation ContinueWith(ContainerConfigurationCallback configure = null);
     }
 
     /// <summary>
-    /// Configures the <paramref name="container"/>.
+    /// Continues the <paramref name="container"/> configuration with any other elements.
     /// </summary>
     /// <param name="container"></param>
-    public delegate void ConfigureContainerCallback(IWindsorContainer container);
+    public delegate void ContainerConfigurationCallback(IWindsorContainer container);
 }

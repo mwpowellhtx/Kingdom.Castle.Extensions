@@ -36,13 +36,16 @@ namespace Kingdom.Castle.Windsor.Web.Http
         /// <see cref="IWindsorDependencyResolver"/>.
         /// </summary>
         /// <param name="getDependencyResolver"></param>
-        public IWindsorContainerConfigurator ConfigureDependencyResolver(
+        public virtual IWindsorContainerConfigurationContinuation ConfigureDependencyResolver(
             WindsorDependencyResolverFactory getDependencyResolver = null)
         {
             getDependencyResolver = getDependencyResolver ?? GetDefaultDependencyResolver;
+
             var dependencyResolver = getDependencyResolver(_container);
+
             _config.DependencyResolver = dependencyResolver;
-            return new WindsorContainerConfigurator(_container);
+
+            return new WindsorContainerConfigurationContinuation(_container);
         }
     }
 }
