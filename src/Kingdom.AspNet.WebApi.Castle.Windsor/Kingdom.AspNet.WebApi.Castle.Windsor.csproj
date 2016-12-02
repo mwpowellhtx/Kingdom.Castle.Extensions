@@ -111,7 +111,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="WindsorContainerConfigurationContinuation.cs" />
     <Compile Include="WindsorContainerRegistrar.cs" />
-    <None Include="Kindgom.AspNet.WebApi.Castle.Windsor.nuspec">
+    <None Include="Kingdom.AspNet.WebApi.Castle.Windsor.nuspec">
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />

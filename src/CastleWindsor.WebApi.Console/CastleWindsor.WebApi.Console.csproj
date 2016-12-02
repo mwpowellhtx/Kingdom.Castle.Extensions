@@ -95,7 +95,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kindgom.AspNet.WebApi.Castle.Windsor\Kindgom.AspNet.WebApi.Castle.Windsor.csproj">
+    <ProjectReference Include="..\Kingdom.AspNet.WebApi.Castle.Windsor\Kingdom.AspNet.WebApi.Castle.Windsor.csproj">
       <Project>{243DE800-ACF8-4E70-8059-58B6952CE98D}</Project>
       <Name>Kindgom.AspNet.WebApi.Castle.Windsor</Name>
     </ProjectReference>

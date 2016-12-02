@@ -116,7 +116,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Kindgom.AspNet.WebApi.Castle.Windsor\Kindgom.AspNet.WebApi.Castle.Windsor.csproj">
+    <ProjectReference Include="..\Kingdom.AspNet.WebApi.Castle.Windsor\Kingdom.AspNet.WebApi.Castle.Windsor.csproj">
       <Project>{243de800-acf8-4e70-8059-58b6952ce98d}</Project>
       <Name>Kindgom.AspNet.WebApi.Castle.Windsor</Name>
     </ProjectReference>
