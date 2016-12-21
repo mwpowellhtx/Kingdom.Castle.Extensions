@@ -9,6 +9,13 @@ namespace System.Web.Http.Tracing
     /// </summary>
     public class DefaultTraceWriter : ITraceWriter
     {
+        /// <summary>
+        /// Provides default Trace capability.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="category"></param>
+        /// <param name="level"></param>
+        /// <param name="traceAction"></param>
         public void Trace(HttpRequestMessage request, string category, TraceLevel level,
             Action<TraceRecord> traceAction)
         {
@@ -23,8 +30,8 @@ namespace System.Web.Http.Tracing
         /// <param name="record"></param>
         protected virtual void Write(TraceRecord record)
         {
-            var message = string.Format("{0};{1};{2}",
-                record.Operator, record.Operation, record.Message);
+            // Ah, string interpolation. What a beautiful thing.
+            var message = $"{record.Operator};{record.Operation};{record.Message}";
             Diagnostics.Trace.WriteLine(message, record.Category);
         }
     }
