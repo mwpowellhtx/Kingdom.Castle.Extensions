@@ -4,14 +4,12 @@ namespace Kingdom.AspNet.WebApi.Castle.Windsor
 {
     using Kingdom.Castle.Windsor.Web.Http;
     using Owin;
-    using OwinStartupAttribute = Microsoft.Owin.OwinStartupAttribute;
+    using global::Castle.Windsor;
 
-#pragma warning disable 657
-    [assembly: OwinStartup(typeof(StartupFixture))]
-#pragma warning restore 657
-   
     public class StartupFixture : Startup
     {
+        protected IWindsorContainer Container { get; private set; }
+
         public override void Configuration(IAppBuilder app)
         {
             base.Configuration(app);
@@ -19,7 +17,8 @@ namespace Kingdom.AspNet.WebApi.Castle.Windsor
             var config = Config;
 
             config.ConfigureApi<StartupFixture>()
-                .ConfigureDependencyResolver();
+                .ConfigureDependencyResolver()
+                .ContinueWith(container => Container = container);
 
             config.MapHttpAttributeRoutes();
 
