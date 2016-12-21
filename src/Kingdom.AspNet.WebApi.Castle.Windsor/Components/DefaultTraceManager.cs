@@ -6,6 +6,10 @@ namespace System.Web.Http.Tracing
     /// </summary>
     public class DefaultTraceManager : ITraceManager
     {
+        /// <summary>
+        /// Initializes the <paramref name="config"/>.
+        /// </summary>
+        /// <param name="config"></param>
         public void Initialize(HttpConfiguration config)
         {
         }

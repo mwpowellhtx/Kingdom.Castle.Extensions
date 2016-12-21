@@ -9,6 +9,11 @@ namespace Kingdom.MicroKernel.Registration
     /// </summary>
     public class ContainerInstaller : WindsorInstallerBase
     {
+        /// <summary>
+        /// Installs using the <paramref name="container"/> and <paramref name="store"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="store"></param>
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
             RegisterComponent<IWindsorContainer>(container, r => r.Instance(container));

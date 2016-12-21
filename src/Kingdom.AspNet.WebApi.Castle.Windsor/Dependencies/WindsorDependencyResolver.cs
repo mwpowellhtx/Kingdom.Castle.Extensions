@@ -17,6 +17,10 @@
         {
         }
 
+        /// <summary>
+        /// Begins the <see cref="IDependencyScope"/> scope.
+        /// </summary>
+        /// <returns></returns>
         public virtual IDependencyScope BeginScope()
         {
             return new WindsorDependencyScope(Container);

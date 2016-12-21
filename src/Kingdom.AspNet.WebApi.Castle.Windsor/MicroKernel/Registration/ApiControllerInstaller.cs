@@ -37,6 +37,11 @@ namespace Kingdom.MicroKernel.Registration
             _assemblies = assemblies;
         }
 
+        /// <summary>
+        /// Installs using the <paramref name="container"/> and <paramref name="store"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="store"></param>
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
             foreach (var assy in _assemblies)

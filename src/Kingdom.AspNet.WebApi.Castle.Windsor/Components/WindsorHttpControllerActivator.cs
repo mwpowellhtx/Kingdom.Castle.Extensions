@@ -2,6 +2,7 @@
 using System.Web.Http.Controllers;
 
 // ReSharper disable once CheckNamespace
+
 namespace System.Web.Http.Dispatcher
 {
     // ReSharper disable once RedundantNameQualifier
@@ -41,6 +42,14 @@ namespace System.Web.Http.Dispatcher
             _container = container;
         }
 
+        /// <summary>
+        /// Creates a <see cref="IHttpController"/> corresponding with the
+        /// <paramref name="request"/> and <paramref name="ctrlType"/>.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="ctrlDescriptor"></param>
+        /// <param name="ctrlType"></param>
+        /// <returns></returns>
         public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor ctrlDescriptor, Type ctrlType)
         {
             var ctrl = (IHttpController) _container.Resolve(ctrlType);

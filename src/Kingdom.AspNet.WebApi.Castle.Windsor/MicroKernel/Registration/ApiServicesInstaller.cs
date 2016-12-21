@@ -3,6 +3,7 @@ using System.Web.Http.Hosting;
 using System.Web.Http.Owin;
 
 // ReSharper disable once CheckNamespace
+
 namespace Kingdom.MicroKernel.Registration
 {
     using global::Castle.MicroKernel.Registration;
@@ -31,11 +32,17 @@ namespace Kingdom.MicroKernel.Registration
         /// </summary>
         /// <param name="registration"></param>
         /// <returns></returns>
-        protected virtual IRegistration RegisterHostBufferPolicySelector(ComponentRegistration<IHostBufferPolicySelector> registration)
+        protected virtual IRegistration RegisterHostBufferPolicySelector(
+            ComponentRegistration<IHostBufferPolicySelector> registration)
         {
             return registration.ImplementedBy<OwinBufferPolicySelector>().LifestyleSingleton();
         }
 
+        /// <summary>
+        /// Installs using the <paramref name="container"/> and <paramref name="store"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="store"></param>
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
             RegisterComponent<IExceptionHandler>(container, RegisterExceptionHandler);

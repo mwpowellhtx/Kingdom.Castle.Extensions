@@ -20,6 +20,9 @@ namespace Kingdom.Castle.Windsor.Web.Http.Dependencies
         {
         }
 
+        /// <summary>
+        /// Disposes the object.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

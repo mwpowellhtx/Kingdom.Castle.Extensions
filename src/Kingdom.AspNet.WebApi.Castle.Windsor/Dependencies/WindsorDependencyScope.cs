@@ -19,6 +19,10 @@ namespace Kingdom.Castle.Windsor.Web.Http.Dependencies
             _scope = container.BeginScope();
         }
 
+        /// <summary>
+        /// Disposes the object.
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (!IsDisposed && disposing)

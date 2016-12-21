@@ -1,6 +1,5 @@
 namespace Kingdom.Castle.Windsor.Web.Http
 {
-    using global::Castle.MicroKernel.Registration;
     using global::Castle.Windsor;
 
     /// <summary>
@@ -22,6 +21,11 @@ namespace Kingdom.Castle.Windsor.Web.Http
 
         private static readonly ContainerConfigurationCallback DefaultCallback = delegate { };
 
+        /// <summary>
+        /// Continues the configuration with the <paramref name="configure"/> callback.
+        /// </summary>
+        /// <param name="configure"></param>
+        /// <returns></returns>
         public IWindsorContainerConfigurationContinuation ContinueWith(ContainerConfigurationCallback configure = null)
         {
             configure = configure ?? DefaultCallback;

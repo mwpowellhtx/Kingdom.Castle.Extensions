@@ -188,6 +188,11 @@ namespace Kingdom.MicroKernel.Registration
             return registration.ImplementedBy<DataAnnotationsModelMetadataProvider>().LifestyleSingleton();
         }
 
+        /// <summary>
+        /// Installs using the <paramref name="container"/> and <paramref name="store"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="store"></param>
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
             var c = container;
