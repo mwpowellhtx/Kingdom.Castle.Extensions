@@ -18,7 +18,7 @@ namespace Kingdom.Castle.Windsor.Web.Http.Dependencies
         /// <summary>
         /// Gets the Container.
         /// </summary>
-        protected IWindsorContainer Container { get; private set; }
+        public IWindsorContainer Container { get; private set; }
 
         /// <summary>
         /// Protected Constructor
