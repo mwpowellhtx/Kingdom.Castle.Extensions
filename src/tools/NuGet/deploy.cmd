@@ -9,9 +9,9 @@ pushd ..\..
 
 if not exist %local_packages_dir% mkdir %local_packages_dir%
 
-echo Copying files...
+echo Copying package files...
 
-for /R %%f in (Kingdom.AspNet.WebApi.Castle.Windsor\%nupkg_files%) do (
+for %%f in (%nupkg_files%) do (
     xcopy "%%f" %local_packages_dir% /Y
 )
 
