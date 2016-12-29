@@ -7,13 +7,20 @@ namespace Kingdom.Web.Http
 
     public class StartupFixture : Startup
     {
-        protected IWindsorContainer Container { get; private set; }
+        /// <summary>
+        /// Gets the Container associated with the StartupFixture.
+        /// </summary>
+        protected IWindsorContainer Container { get; }
+
+        public StartupFixture()
+        {
+            // Make certain that we have a Container waiting for us OnConfiguration.
+            Container = new WindsorContainer();
+        }
 
         public override void Configuration(IAppBuilder app)
         {
             base.Configuration(app);
-
-            Container = new WindsorContainer();
 
             Container.ConfigureApi<StartupFixture>(Config);
 
