@@ -27,7 +27,7 @@ namespace Kingdom.MicroKernel.Registration
 
         /// <summary>
         /// Registers <typeparamref name="T"/> as a <see cref="IWindsorDependencyResolver"/> using
-        /// web request lifecycle, with forward to <see cref="IDependencyResolver"/>.
+        /// singleton lifecycle, with forward to <see cref="IDependencyResolver"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -36,7 +36,8 @@ namespace Kingdom.MicroKernel.Registration
         {
             return Component.For<IWindsorDependencyResolver>()
                 .Forward<IDependencyResolver>()
-                .LifestylePerWebRequest();
+                .ImplementedBy<WindsorDependencyResolver>()
+                .LifestyleSingleton();
         }
 
         /// <summary>
@@ -47,8 +48,12 @@ namespace Kingdom.MicroKernel.Registration
         public override void Install(IWindsorContainer container, IConfigurationStore store)
         {
             // Actually register the Dependency Resolver, then Resolve it.
-            RegisterDependencyResolver<WindsorDependencyResolver>();
+            container.Register(
+                RegisterDependencyResolver<WindsorDependencyResolver>()
+            );
+
             var dependencyResolver = container.Resolve<IDependencyResolver>();
+
             _config.DependencyResolver = dependencyResolver;
         }
     }

@@ -17,7 +17,9 @@ namespace Kingdom.Web.Http
 
             Container.ConfigureApi<StartupFixture>(Config);
 
-            Config.MapHttpAttributeRoutes();
+            Config.UseWindsorDependencyResolver(Container)
+                .MapHttpAttributeRoutes()
+                ;
 
             Config.Routes.MapHttpRoute(
                 "DefaultApi", "api/{controller}/{id}",

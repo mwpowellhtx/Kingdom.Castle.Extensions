@@ -41,18 +41,6 @@ namespace Kingdom.MicroKernel.Registration
         }
 
         /// <summary>
-        /// Registers the <see cref="IDependencyResolver"/> as a
-        /// <see cref="WindsorDependencyResolver"/>. Override to specialize the registration.
-        /// </summary>
-        /// <param name="registration"></param>
-        /// <returns></returns>
-        protected virtual IRegistration RegisterDependencyResolver(
-            ComponentRegistration<IDependencyResolver> registration)
-        {
-            return registration.ImplementedBy<WindsorDependencyResolver>().LifestyleSingleton();
-        }
-
-        /// <summary>
         /// Installs using the <paramref name="container"/> and <paramref name="store"/>.
         /// </summary>
         /// <param name="container"></param>
@@ -61,7 +49,6 @@ namespace Kingdom.MicroKernel.Registration
         {
             RegisterComponent<IExceptionHandler>(container, RegisterExceptionHandler);
             RegisterComponent<IHostBufferPolicySelector>(container, RegisterHostBufferPolicySelector);
-            RegisterComponent<IDependencyResolver>(container, RegisterDependencyResolver);
         }
     }
 }
