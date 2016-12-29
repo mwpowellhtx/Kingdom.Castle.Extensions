@@ -37,10 +37,7 @@ namespace Kingdom.Web.Http.Dependencies
         /// <summary>
         /// Gets the <see cref="GlobalConfiguration.Configuration"/> for protected usage.
         /// </summary>
-        protected static HttpConfiguration GlobalConfig
-        {
-            get { return GlobalConfiguration.Configuration; }
-        }
+        protected static HttpConfiguration GlobalConfig => GlobalConfiguration.Configuration;
 
         /// <summary>
         /// Returns the Service corresponding with the <paramref name="serviceType"/> Type.
