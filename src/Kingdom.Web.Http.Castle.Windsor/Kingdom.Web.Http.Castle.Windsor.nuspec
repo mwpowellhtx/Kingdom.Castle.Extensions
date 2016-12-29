@@ -3,7 +3,7 @@
     <metadata>
         <id>Kingdom.AspNet.WebApi.Castle.Windsor</id>
         <title>$title$</title>
-        <version>1.4.1</version>
+        <version>1.4.2</version>
         <authors>Michael W. Powell</authors>
         <owners>$author$</owners>
         <projectUrl>http://github.com/mwpowellhtx/Kingdom.Castle.Extensions</projectUrl>
