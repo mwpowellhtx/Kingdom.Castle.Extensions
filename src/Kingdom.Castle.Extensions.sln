@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.AspNet.WebApi.Castle.Windsor", "Kingdom.AspNet.WebApi.Castle.Windsor\Kingdom.AspNet.WebApi.Castle.Windsor.csproj", "{243DE800-ACF8-4E70-8059-58B6952CE98D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Http.Castle.Windsor", "Kingdom.Web.Http.Castle.Windsor\Kingdom.Web.Http.Castle.Windsor.csproj", "{243DE800-ACF8-4E70-8059-58B6952CE98D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E94DC946-B7FE-4D32-ADBB-9283AB977834}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,9 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{C227A6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EB348A88-03A6-4253-B6EF-4F6E81A3F3B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.AspNet.WebApi.Castle.Windsor.Tests", "Kingdom.AspNet.WebApi.Castle.Windsor.Tests\Kingdom.AspNet.WebApi.Castle.Windsor.Tests.csproj", "{2AF27E3E-24F0-4F26-9043-15EEE38C936D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Http.Castle.Windsor.Tests", "Kingdom.Web.Http.Castle.Windsor.Tests\Kingdom.Web.Http.Castle.Windsor.Tests.csproj", "{2AF27E3E-24F0-4F26-9043-15EEE38C936D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CastleWindsor.WebApi.Console", "CastleWindsor.WebApi.Console\CastleWindsor.WebApi.Console.csproj", "{63CFB4E1-1089-4838-B4BC-61A926D8DA9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Mvc.Castle.Windsor", "Kingdom.Web.Mvc.Castle.Windsor\Kingdom.Web.Mvc.Castle.Windsor.csproj", "{67209758-A98F-44EA-B695-0A6D25187CF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{63CFB4E1-1089-4838-B4BC-61A926D8DA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63CFB4E1-1089-4838-B4BC-61A926D8DA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63CFB4E1-1089-4838-B4BC-61A926D8DA9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67209758-A98F-44EA-B695-0A6D25187CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67209758-A98F-44EA-B695-0A6D25187CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67209758-A98F-44EA-B695-0A6D25187CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67209758-A98F-44EA-B695-0A6D25187CF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{243DE800-ACF8-4E70-8059-58B6952CE98D} = {8F78DB9E-B3D7-4B90-888A-6A1027A3B564}
 		{2AF27E3E-24F0-4F26-9043-15EEE38C936D} = {EB348A88-03A6-4253-B6EF-4F6E81A3F3B5}
 		{63CFB4E1-1089-4838-B4BC-61A926D8DA9E} = {8F78DB9E-B3D7-4B90-888A-6A1027A3B564}
+		{67209758-A98F-44EA-B695-0A6D25187CF6} = {8F78DB9E-B3D7-4B90-888A-6A1027A3B564}
 	EndGlobalSection
 EndGlobal

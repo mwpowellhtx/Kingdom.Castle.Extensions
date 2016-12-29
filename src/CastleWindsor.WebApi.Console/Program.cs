@@ -38,12 +38,13 @@ namespace CastleWindsor.WebApi.Console
             // TODO: TBD: provide a means of connecting the Container with the caller?
             var container = new WindsorContainer();
 
+            // TODO: TBD: "Web API" versus "Services" is a bit confusing... better naming convention...
             container.Install(
                 new ContainerInstaller()
                 , new ApiServicesInstaller()
                 , new WebApiInstaller(config)
+                , new ApiDependencyResolverInstaller(config)
                 , new ApiControllerInstaller<Program>()
-                , new WindsorDependencyResolverInstaller(config)
                 );
 
             config.MapHttpAttributeRoutes();

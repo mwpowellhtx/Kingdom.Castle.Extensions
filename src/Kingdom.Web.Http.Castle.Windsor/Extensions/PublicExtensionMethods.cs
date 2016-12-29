@@ -1,0 +1,63 @@
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Web.Http;
+
+namespace Kingdom.Web.Http
+{
+    using Castle.Windsor;
+    using MicroKernel.Registration;
+
+    /// <summary>
+    /// Provides the hooks for <see cref="IWindsorContainer"/> integration with ASP.NET Web API.
+    /// </summary>
+    public static class PublicExtensionMethods
+    {
+        /// <summary>
+        /// Configures <see cref="IWindsorContainer"/> with the <paramref name="config"/>.
+        /// </summary>
+        /// <typeparam name="T">Type for which <see cref="Assembly"/> will be scanned for
+        /// <see cref="ApiController"/> registration.</typeparam>
+        /// <param name="container"></param>
+        /// <param name="config"></param>
+        /// <param name="otherTypes"></param>
+        /// <returns></returns>
+        public static IWindsorContainer ConfigureApi<T>(this IWindsorContainer container,
+            HttpConfiguration config, params Type[] otherTypes)
+        {
+            container.Install(
+                new ContainerInstaller()
+                , new ApiDependencyResolverInstaller(config)
+                , new ApiServicesInstaller()
+                , new WebApiInstaller(config)
+                , new ApiControllerInstaller<T>(otherTypes)
+            );
+
+            return container;
+        }
+
+        /// <summary>
+        /// Configures <see cref="IWindsorContainer"/> with the <paramref name="config"/>.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="config"></param>
+        /// <param name="rootType"><see cref="Type"/> for which <see cref="Assembly"/> will be
+        /// scanned for <see cref="ApiController"/> registration.</param>
+        /// <param name="otherTypes"></param>
+        /// <returns></returns>
+        public static IWindsorContainer ConfigureApi(this IWindsorContainer container,
+            HttpConfiguration config, Type rootType, params Type[] otherTypes)
+        {
+            var types = new[] {rootType}.Concat(otherTypes);
+
+            container.Install(
+                new ContainerInstaller()
+                , new ApiServicesInstaller()
+                , new WebApiInstaller(config)
+                , new ApiControllerInstaller(types)
+                );
+
+            return container;
+        }
+    }
+}
