@@ -6,6 +6,7 @@ using System.Web.Http;
 namespace Kingdom.Web.Http
 {
     using Castle.Windsor;
+    using Dependencies;
     using MicroKernel.Registration;
 
     /// <summary>
@@ -58,6 +59,20 @@ namespace Kingdom.Web.Http
                 );
 
             return container;
+        }
+
+        /// <summary>
+        /// Sets the <see cref="HttpConfiguration.DependencyResolver"/> with the
+        /// <see cref="IWindsorDependencyResolver"/>
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public static HttpConfiguration UseWindsorDependencyResolver(this HttpConfiguration config,
+            IWindsorContainer container)
+        {
+            config.DependencyResolver = container.Resolve<IWindsorDependencyResolver>();
+            return config;
         }
     }
 }
