@@ -36,10 +36,11 @@ namespace Kingdom.Web.Mvc
             /* TODO: TBD: assuming that the filters are all of the type IMvcFilter... if not, that's a
              * problem... or we just need to identify the general type, not respective of IMvcFilter... */
 
-            var filters = filterInfo.AuthorizationFilters.Cast<IMvcFilter>()
-                    .Concat(filterInfo.ActionFilters.Cast<IMvcFilter>())
-                    .Concat(filterInfo.ResultFilters.Cast<IMvcFilter>())
-                    .Concat(filterInfo.ExceptionFilters.Cast<IMvcFilter>()).ToList()
+            var filters = filterInfo.AuthorizationFilters.Cast<object>()
+                    .Concat(filterInfo.ActionFilters)
+                    .Concat(filterInfo.ResultFilters)
+                    .Concat(filterInfo.ExceptionFilters)
+                    .OfType<IMvcFilter>().ToList()
                 ;
 
             Action<IMvcFilter> inject = f => _container.InjectFilter(f);

@@ -82,6 +82,7 @@
     <Compile Include="..\Shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Attributes\InjectAttribute.cs" />
     <Compile Include="MicroKernel\Registration\WindsorContainerInstaller.cs" />
     <Compile Include="MicroKernel\Registration\WindsorInstallerBase.cs" />
     <Compile Include="Services\IWindsorControllerFactory.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="MicroKernel\Registration\MvcServicesInstaller.cs" />
     <Compile Include="MicroKernel\Registration\MvcControllersInstaller.cs" />
     <Compile Include="Extensions\PublicExtensionMethods.cs" />
+    <Compile Include="Services\ViewPageComponentActivator.cs" />
     <Compile Include="Services\WindsorControllerActionInvoker.cs" />
     <Compile Include="Services\IWindsorActionInvoker.cs" />
     <Compile Include="Extensions\InternalExtensionMethods.cs" />
