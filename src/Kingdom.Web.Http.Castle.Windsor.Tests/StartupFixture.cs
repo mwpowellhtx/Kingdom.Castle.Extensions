@@ -22,7 +22,7 @@ namespace Kingdom.Web.Http
         {
             base.Configuration(app);
 
-            Container.ConfigureApi<StartupFixture>(Config);
+            Container.InstallApiServices<StartupFixture>(Config);
 
             Config.UseWindsorDependencyResolver(Container)
                 .MapHttpAttributeRoutes()
