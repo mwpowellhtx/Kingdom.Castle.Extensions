@@ -1,3 +1,5 @@
+.vs/
+
 bin/
 obj/
 
@@ -6,5 +8,8 @@ packages/
 
 *.suo
 *.nupkg
+
+*.user
+*.DotSettings
 
 publish.cmd
