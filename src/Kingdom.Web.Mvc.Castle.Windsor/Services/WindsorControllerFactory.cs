@@ -3,9 +3,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-/* TODO: TBD: also includes a reference to System.Web... may be important for packaging purposes,
- * such as into projects that were not necessary Web oriented before adding the package reference... */
-
 namespace Kingdom.Web.Mvc
 {
     using Castle.MicroKernel;
@@ -15,7 +12,7 @@ namespace Kingdom.Web.Mvc
     /// </summary>
     public class WindsorControllerFactory : DefaultControllerFactory, IWindsorControllerFactory
     {
-        private readonly IKernel _kernel;
+        private IKernel Kernel { get; }
 
         /// <summary>
         /// Constructor
@@ -23,7 +20,13 @@ namespace Kingdom.Web.Mvc
         /// <param name="kernel"></param>
         public WindsorControllerFactory(IKernel kernel)
         {
-            _kernel = kernel;
+            Kernel = kernel;
+        }
+
+        private void ReleaseController(IDisposable disposable)
+        {
+            disposable?.Dispose();
+            Kernel.ReleaseComponent(disposable);
         }
 
         /// <summary>
@@ -32,7 +35,7 @@ namespace Kingdom.Web.Mvc
         /// <param name="controller"></param>
         public override void ReleaseController(IController controller)
         {
-            _kernel.ReleaseComponent(controller);
+            ReleaseController((IDisposable) controller);
         }
 
         /// <summary>
@@ -43,13 +46,23 @@ namespace Kingdom.Web.Mvc
         /// <returns></returns>
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            if (controllerType != null)
+            const int notFound = 404;
+
+            if (controllerType == null)
             {
-                return (IController) _kernel.Resolve(controllerType);
+                throw new HttpException(notFound,
+                    $"The controller for path '{requestContext.HttpContext.Request.Path}'"
+                    + " could not be found.");
             }
 
-            var message = $"The controller for path '{requestContext.HttpContext.Request.Path}' could not be found.";
-            throw new HttpException(404, message);
+            if (Kernel.HasComponent(controllerType))
+            {
+                return (IController) Kernel.Resolve(controllerType);
+            }
+
+            throw new HttpException(notFound,
+                $"The controller '{controllerType.FullName}' for path"
+                + $" '{requestContext.HttpContext.Request.Path}' could not be found.");
         }
     }
 }
