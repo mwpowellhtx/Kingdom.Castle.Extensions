@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Http;
@@ -15,7 +16,8 @@ namespace Kingdom.Web.Http
     public static class PublicExtensionMethods
     {
         /// <summary>
-        /// Configures <see cref="IWindsorContainer"/> with the <paramref name="config"/>.
+        /// Installs services for use with <see cref="IWindsorContainer"/> and
+        /// <see cref="HttpConfiguration"/> <paramref name="config"/>.
         /// </summary>
         /// <typeparam name="T">Type for which <see cref="Assembly"/> will be scanned for
         /// <see cref="ApiController"/> registration.</typeparam>
@@ -23,7 +25,7 @@ namespace Kingdom.Web.Http
         /// <param name="config"></param>
         /// <param name="otherTypes"></param>
         /// <returns></returns>
-        public static IWindsorContainer ConfigureApi<T>(this IWindsorContainer container,
+        public static IWindsorContainer InstallApiServices<T>(this IWindsorContainer container,
             HttpConfiguration config, params Type[] otherTypes)
         {
             container.Install(
@@ -38,7 +40,8 @@ namespace Kingdom.Web.Http
         }
 
         /// <summary>
-        /// Configures <see cref="IWindsorContainer"/> with the <paramref name="config"/>.
+        /// Installs services for use with <see cref="IWindsorContainer"/> and
+        /// <see cref="HttpConfiguration"/> <paramref name="config"/>.
         /// </summary>
         /// <param name="container"></param>
         /// <param name="config"></param>
@@ -46,7 +49,7 @@ namespace Kingdom.Web.Http
         /// scanned for <see cref="ApiController"/> registration.</param>
         /// <param name="otherTypes"></param>
         /// <returns></returns>
-        public static IWindsorContainer ConfigureApi(this IWindsorContainer container,
+        public static IWindsorContainer InstallApiServices(this IWindsorContainer container,
             HttpConfiguration config, Type rootType, params Type[] otherTypes)
         {
             var types = new[] {rootType}.Concat(otherTypes);
@@ -56,14 +59,14 @@ namespace Kingdom.Web.Http
                 , new ApiServicesInstaller()
                 , new WebApiInstaller(config)
                 , new ApiControllerInstaller(types)
-                );
+            );
 
             return container;
         }
 
         /// <summary>
         /// Sets the <see cref="HttpConfiguration.DependencyResolver"/> with the
-        /// <see cref="IWindsorDependencyResolver"/>
+        /// <see cref="IWindsorDependencyResolver"/>.
         /// </summary>
         /// <param name="config"></param>
         /// <param name="container"></param>
