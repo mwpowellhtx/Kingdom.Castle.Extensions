@@ -15,14 +15,14 @@ namespace Kingdom.Web.Mvc
     public static class PublicExtensionMethods
     {
         /// <summary>
-        /// Configures the <paramref name="container"/> for use with ASP.NET MVC.
+        /// Installs services in the <paramref name="container"/> for use with ASP.NET MVC.
         /// </summary>
         /// <typeparam name="T">Type for which <see cref="Assembly"/> will be scanned for
         /// <see cref="IController"/> registration.</typeparam>
         /// <param name="container"></param>
         /// <param name="otherTypes"></param>
         /// <returns></returns>
-        public static IWindsorContainer ConfigureMvc<T>(this IWindsorContainer container,
+        public static IWindsorContainer InstallMvcServices<T>(this IWindsorContainer container,
             params Type[] otherTypes)
         {
             // TODO: TBD: may want a view installer as well...
@@ -36,17 +36,17 @@ namespace Kingdom.Web.Mvc
         }
 
         /// <summary>
-        /// Configures the <paramref name="container"/> for use with ASP.NET MVC.
+        /// Installs services in the <paramref name="container"/> for use with ASP.NET MVC.
         /// </summary>
         /// <param name="container"></param>
-        /// <param name="rootType"><see cref="Type"/> for which <see cref="Assembly"/> will be
+        /// <param name="ctrlRootType"><see cref="Type"/> for which <see cref="Assembly"/> will be
         /// scanned for <see cref="IController"/> registration.</param>
-        /// <param name="otherTypes"></param>
+        /// <param name="otherCtrlTypes"></param>
         /// <returns></returns>
-        public static IWindsorContainer ConfigureMvc(this IWindsorContainer container,
-            Type rootType, params Type[] otherTypes)
+        public static IWindsorContainer InstallMvcServices(this IWindsorContainer container,
+            Type ctrlRootType, params Type[] otherCtrlTypes)
         {
-            var types = new[] {rootType}.Concat(otherTypes);
+            var types = new[] {ctrlRootType}.Concat(otherCtrlTypes);
 
             container.Install(
                 new WindsorContainerInstaller()
@@ -58,7 +58,8 @@ namespace Kingdom.Web.Mvc
         }
 
         /// <summary>
-        /// Uses the <see cref="IDependencyResolver"/> configured via the <paramref name="container"/>.
+        /// Uses the <see cref="IDependencyResolver"/> configured via the
+        /// <see cref="IWindsorContainer"/> <paramref name="container"/>.
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
@@ -72,18 +73,19 @@ namespace Kingdom.Web.Mvc
             return container;
         }
 
-        /// <summary>
-        /// Uses the <see cref="IControllerFactory"/> configured via the <paramref name="container"/>.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public static IWindsorContainer UseControllerFactory(this IWindsorContainer container)
-        {
-            {
-                var ctrlFactory = container.Resolve<IControllerFactory>();
-                ControllerBuilder.Current.SetControllerFactory(ctrlFactory);
-            }
-            return container;
-        }
+        //// TODO: TBD: as long as we register the Ctrl factory, which we do, this is unnecessary...
+        ///// <summary>
+        ///// Uses the <see cref="IControllerFactory"/> configured via the <paramref name="container"/>.
+        ///// </summary>
+        ///// <param name="container"></param>
+        ///// <returns></returns>
+        //public static IWindsorContainer UseControllerFactory(this IWindsorContainer container)
+        //{
+        //    {
+        //        var ctrlFactory = container.Resolve<IControllerFactory>();
+        //        ControllerBuilder.Current.SetControllerFactory(ctrlFactory);
+        //    }
+        //    return container;
+        //}
     }
 }

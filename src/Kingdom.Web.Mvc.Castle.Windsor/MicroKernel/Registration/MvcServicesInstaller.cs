@@ -16,16 +16,17 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
     public class MvcServicesInstaller : IWindsorInstaller
     {
         /// <summary>
-        /// Registers <typeparamref name="T"/> as a <see cref="IControllerFactory"/> using
-        /// per web request lifecycle.
+        /// Registers <typeparamref name="T"/> as a <see cref="IWindsorControllerFactory"/> using
+        /// with forwarding to <see cref="IControllerFactory"/> and singleton lifecycle.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public virtual IRegistration RegisterControllerFactory<T>()
-            where T : class, IControllerFactory
+            where T : class, IWindsorControllerFactory
         {
-            return Component.For<IControllerFactory>()
-                .ImplementedBy<T>().LifestylePerWebRequest();
+            return Component.For<IWindsorControllerFactory>()
+                .Forward<IControllerFactory>()
+                .ImplementedBy<T>().LifestyleSingleton();
         }
 
         /// <summary>
@@ -75,10 +76,13 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
         /// <param name="store"></param>
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            RegisterControllerFactory<WindsorControllerFactory>();
-            RegisterViewPageActivator<WindsorViewPageActivator>();
-            RegisterDependencyResolver<WindsorDependencyResolver>();
-            RegisterActionInvoker<WindsorControllerActionInvoker>();
+            // Remember to also apply the Registrations in Container.
+            container.Register(
+                RegisterControllerFactory<WindsorControllerFactory>()
+                , RegisterViewPageActivator<WindsorViewPageActivator>()
+                , RegisterDependencyResolver<WindsorDependencyResolver>()
+                , RegisterActionInvoker<WindsorControllerActionInvoker>()
+            );
         }
     }
 }
