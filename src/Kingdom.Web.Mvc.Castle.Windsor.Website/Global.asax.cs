@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Castle.MicroKernel.Registration;
 
 namespace Kingdom.Web.Mvc.Castle.Windsor.Website
 {
@@ -28,6 +29,11 @@ namespace Kingdom.Web.Mvc.Castle.Windsor.Website
             Container.InstallMvcServices<HomeController>()
                 .UseDependencyResolver()
                 ;
+
+            Container.Register(
+                Component.For<IFixture>()
+                    .ImplementedBy<Fixture>().LifestyleTransient()
+            );
         }
     }
 }

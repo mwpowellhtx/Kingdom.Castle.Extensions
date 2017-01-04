@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Web.Mvc;
 
 namespace Kingdom.Web.Mvc
 {
@@ -16,21 +15,28 @@ namespace Kingdom.Web.Mvc
             return typeof(T).IsAssignableFrom(type);
         }
 
-        private static void InjectFilterProperty(this IWindsorContainer container, IMvcFilter filter,
+        private static void InjectObjectProperty<T>(this IWindsorContainer container, T obj,
             PropertyInfo propertyInfo)
         {
-            propertyInfo.SetValue(filter, container.Resolve(propertyInfo.PropertyType));
+            propertyInfo.SetValue(obj, container.Resolve(propertyInfo.PropertyType));
         }
 
-        internal static IWindsorContainer InjectFilter(this IWindsorContainer container, IMvcFilter filter)
+        /// <summary>
+        /// Injects the Object corresponding with the <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        internal static IWindsorContainer InjectObject<T>(this IWindsorContainer container, T obj)
         {
             const BindingFlags propertyBindingAttr = Public | Instance | SetProperty;
 
-            var properties = filter.GetType().GetProperties(propertyBindingAttr);
+            var properties = obj.GetType().GetProperties(propertyBindingAttr);
 
             foreach (var property in properties.Where(p => p.HasAttribute<InjectAttribute>()))
             {
-                container.InjectFilterProperty(filter, property);
+                container.InjectObjectProperty(obj, property);
             }
 
             return container;

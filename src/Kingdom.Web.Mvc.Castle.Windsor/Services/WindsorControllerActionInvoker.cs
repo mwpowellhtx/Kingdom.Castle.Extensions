@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,7 +10,7 @@ namespace Kingdom.Web.Mvc
     /// </summary>
     public class WindsorControllerActionInvoker : ControllerActionInvoker, IWindsorActionInvoker
     {
-        private readonly IWindsorContainer _container;
+        private IWindsorContainer Container { get; }
 
         /// <summary>
         /// Constructor
@@ -19,7 +18,12 @@ namespace Kingdom.Web.Mvc
         /// <param name="container"></param>
         public WindsorControllerActionInvoker(IWindsorContainer container)
         {
-            _container = container;
+            Container = container;
+        }
+
+        private void InjectFilter<T>(T obj)
+        {
+            Container.InjectObject(obj);
         }
 
         /// <summary>
@@ -33,19 +37,11 @@ namespace Kingdom.Web.Mvc
         {
             var filterInfo = base.GetFilters(controllerContext, actionDescriptor);
 
-            /* TODO: TBD: assuming that the filters are all of the type IMvcFilter... if not, that's a
-             * problem... or we just need to identify the general type, not respective of IMvcFilter... */
-
-            var filters = filterInfo.AuthorizationFilters.Cast<object>()
-                    .Concat(filterInfo.ActionFilters)
-                    .Concat(filterInfo.ResultFilters)
-                    .Concat(filterInfo.ExceptionFilters)
-                    .OfType<IMvcFilter>().ToList()
-                ;
-
-            Action<IMvcFilter> inject = f => _container.InjectFilter(f);
-
-            filters.ForEach(inject);
+            // We must treat each of the Filter types individually.
+            filterInfo.AuthorizationFilters.ToList().ForEach(InjectFilter);
+            filterInfo.ActionFilters.ToList().ForEach(InjectFilter);
+            filterInfo.ResultFilters.ToList().ForEach(InjectFilter);
+            filterInfo.ExceptionFilters.ToList().ForEach(InjectFilter);
 
             return filterInfo;
         }
