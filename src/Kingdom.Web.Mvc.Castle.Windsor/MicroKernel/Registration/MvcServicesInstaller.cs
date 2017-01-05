@@ -24,8 +24,7 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
         public virtual IRegistration RegisterControllerFactory<T>()
             where T : class, IWindsorControllerFactory
         {
-            return Component.For<IWindsorControllerFactory>()
-                .Forward<IControllerFactory>()
+            return Component.For<IWindsorControllerFactory, IControllerFactory>()
                 .ImplementedBy<T>().LifestyleSingleton();
         }
 
@@ -51,8 +50,7 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
         public virtual IRegistration RegisterDependencyResolver<T>()
             where T : class, IWindsorDependencyResolver
         {
-            return Component.For<IWindsorDependencyResolver>()
-                .Forward<IMvcDependencyResolver>()
+            return Component.For<IWindsorDependencyResolver, IMvcDependencyResolver>()
                 .ImplementedBy<T>().LifestyleSingleton();
         }
 
@@ -66,7 +64,7 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
             where T : class, IActionInvoker
         {
             return Component.For<IActionInvoker>()
-                .ImplementedBy<T>().LifestylePerWebRequest();
+                .ImplementedBy<T>().LifestyleTransient();
         }
 
         /// <summary>
