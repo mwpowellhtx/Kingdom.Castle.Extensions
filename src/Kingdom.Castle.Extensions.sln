@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Mvc.Castle.Wind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Mvc.Castle.Windsor.Website", "Kingdom.Web.Mvc.Castle.Windsor.Website\Kingdom.Web.Mvc.Castle.Windsor.Website.csproj", "{F860B241-D7E1-400C-BC1C-CD827DBDE97E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kingdom.Web.Mvc.Core", "Kingdom.Web.Mvc.Core\Kingdom.Web.Mvc.Core.csproj", "{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{F860B241-D7E1-400C-BC1C-CD827DBDE97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F860B241-D7E1-400C-BC1C-CD827DBDE97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F860B241-D7E1-400C-BC1C-CD827DBDE97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +78,6 @@ Global
 		{67209758-A98F-44EA-B695-0A6D25187CF6} = {8F78DB9E-B3D7-4B90-888A-6A1027A3B564}
 		{5D105744-4996-4B56-A849-4CC6FF19503C} = {EB348A88-03A6-4253-B6EF-4F6E81A3F3B5}
 		{F860B241-D7E1-400C-BC1C-CD827DBDE97E} = {EB348A88-03A6-4253-B6EF-4F6E81A3F3B5}
+		{655504C1-18A1-4E4A-88BC-AC3FA0EC706B} = {8F78DB9E-B3D7-4B90-888A-6A1027A3B564}
 	EndGlobalSection
 EndGlobal
