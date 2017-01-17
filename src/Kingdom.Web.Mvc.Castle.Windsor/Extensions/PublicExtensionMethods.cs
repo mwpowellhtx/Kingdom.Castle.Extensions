@@ -17,19 +17,19 @@ namespace Kingdom.Web.Mvc
         /// <summary>
         /// Installs services in the <paramref name="container"/> for use with ASP.NET MVC.
         /// </summary>
-        /// <typeparam name="T">Type for which <see cref="Assembly"/> will be scanned for
-        /// <see cref="IController"/> registration.</typeparam>
+        /// <typeparam name="TController">Type for which <see cref="Assembly"/> will be scanned
+        /// for <see cref="IController"/> registration.</typeparam>
         /// <param name="container"></param>
         /// <param name="otherTypes"></param>
         /// <returns></returns>
-        public static IWindsorContainer InstallMvcServices<T>(this IWindsorContainer container,
-            params Type[] otherTypes)
+        public static IWindsorContainer InstallMvcServices<TController>(this IWindsorContainer container
+            , params Type[] otherTypes)
         {
             // TODO: TBD: may want a view installer as well...
             container.Install(
                 new WindsorContainerInstaller()
                 , new MvcServicesInstaller()
-                , new MvcControllerInstaller<T>(otherTypes)
+                , new MvcControllerInstaller<TController>(otherTypes)
             );
 
             return container;
