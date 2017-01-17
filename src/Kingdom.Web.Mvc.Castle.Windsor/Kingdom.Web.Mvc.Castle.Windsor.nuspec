@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
-        <id>Kingdom.AspNet.Mvc.Castle.Windsor</id>
+        <id>$title$</id>
         <title>$title$</title>
-        <version>1.1.4</version>
+        <version>1.2.0</version>
         <authors>Michael W. Powell</authors>
         <owners>$author$</owners>
         <projectUrl>http://github.com/mwpowellhtx/Kingdom.Castle.Extensions</projectUrl>
