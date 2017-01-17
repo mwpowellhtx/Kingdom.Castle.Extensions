@@ -82,7 +82,6 @@
     <Compile Include="..\Shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Attributes\InjectAttribute.cs" />
     <Compile Include="MicroKernel\Registration\WindsorContainerInstaller.cs" />
     <Compile Include="MicroKernel\Registration\WindsorInstallerBase.cs" />
     <Compile Include="Services\IWindsorControllerFactory.cs" />
@@ -107,7 +106,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Kingdom.Web.Mvc.Core\Kingdom.Web.Mvc.Core.csproj">
+      <Project>{655504C1-18A1-4E4A-88BC-AC3FA0EC706B}</Project>
+      <Name>Kingdom.Web.Mvc.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
