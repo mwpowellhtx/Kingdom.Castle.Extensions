@@ -54,16 +54,16 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
 
     /// <summary>
     /// Provides <see cref="IWindsorContainer"/> registration for <see cref="IController"/>
-    /// based, MVC controllers, for the type <typeparamref name="T"/>.
+    /// based, MVC controllers, for the type <typeparamref name="TController"/>.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class MvcControllerInstaller<T> : MvcControllerInstaller
+    /// <typeparam name="TController"></typeparam>
+    public class MvcControllerInstaller<TController> : MvcControllerInstaller
     {
         /// <summary>
         /// Constructor
         /// </summary>
         public MvcControllerInstaller()
-            : base(new[] {typeof(T)})
+            : base(new[] {typeof(TController)})
         {
         }
 
@@ -72,7 +72,7 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
         /// </summary>
         /// <param name="types"></param>
         public MvcControllerInstaller(IEnumerable<Type> types)
-            : base(new[] {typeof(T)}.Concat(types))
+            : base(new[] {typeof(TController)}.Concat(types))
         {
         }
     }
