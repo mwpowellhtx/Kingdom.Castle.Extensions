@@ -3,7 +3,7 @@
     <metadata>
         <id>$title$</id>
         <title>$title$</title>
-        <version>1.2.1</version>
+        <version>1.2.2</version>
         <authors>Michael W. Powell</authors>
         <owners>$author$</owners>
         <projectUrl>http://github.com/mwpowellhtx/Kingdom.Castle.Extensions</projectUrl>
@@ -11,6 +11,7 @@
         <description>Castle Windsor boostrap for use with Microsoft ASP.NET MVC.</description>
         <tags>Castle Windsor ASP.NET MVC bootstrap</tags>
         <dependencies>
+            <dependency id="Kingdom.AspNet.Mvc.Core" version="1.0.0" />
             <dependency id="Castle.Windsor" version="3.3.0" />
             <dependency id="Microsoft.AspNet.Mvc" version="[5.2.3,6.0.0)" />
         </dependencies>
