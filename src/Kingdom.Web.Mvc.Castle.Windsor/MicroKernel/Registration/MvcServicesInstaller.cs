@@ -13,7 +13,9 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
     /// <see cref="IKernel"/> installer for use with <see cref="IWindsorContainer"/> specific Mvc
     /// Services.
     /// </summary>
-    public class MvcServicesInstaller : IWindsorInstaller
+    /// <typeparam name="TActionInvoker"></typeparam>
+    public class MvcServicesInstaller<TActionInvoker> : IWindsorInstaller
+        where TActionInvoker : class, IActionInvoker
     {
         /// <summary>
         /// Registers <typeparamref name="T"/> as a <see cref="IWindsorControllerFactory"/> using
@@ -55,16 +57,14 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
         }
 
         /// <summary>
-        /// Registers <typeparamref name="T"/> as a <see cref="IActionInvoker"/> using
-        /// per web request lifecycle.
+        /// Registers <typeparamref name="TActionInvoker"/> as a <see cref="IActionInvoker"/>
+        /// using per web request lifecycle.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public virtual IRegistration RegisterActionInvoker<T>()
-            where T : class, IActionInvoker
+        public virtual IRegistration RegisterActionInvoker()
         {
             return Component.For<IActionInvoker>()
-                .ImplementedBy<T>().LifestyleTransient();
+                .ImplementedBy<TActionInvoker>().LifestyleTransient();
         }
 
         /// <summary>
@@ -79,8 +79,16 @@ namespace Kingdom.Web.Mvc.MicroKernel.Registration
                 RegisterControllerFactory<WindsorControllerFactory>()
                 , RegisterViewPageActivator<WindsorViewPageActivator>()
                 , RegisterDependencyResolver<WindsorDependencyResolver>()
-                , RegisterActionInvoker<WindsorControllerActionInvoker>()
+                , RegisterActionInvoker()
             );
         }
+    }
+
+    /// <summary>
+    /// <see cref="IKernel"/> installer for use with <see cref="IWindsorContainer"/> specific Mvc
+    /// Services.
+    /// </summary>
+    public class MvcServicesInstaller : MvcServicesInstaller<WindsorControllerActionInvoker>
+    {
     }
 }
