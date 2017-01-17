@@ -12,6 +12,7 @@ echo Packing NuGet packages...
 
 :: TODO: TBD: remember to deal with published NuGet packages, rename and/or delete/obsolete the old name...
 call :pack Kingdom.Web.Http.Castle.Windsor
+call :pack Kingdom.Web.Mvc.Core
 call :pack Kingdom.Web.Mvc.Castle.Windsor
 
 :end
