@@ -3,7 +3,7 @@
     <metadata>
         <id>$title$</id>
         <title>$title$</title>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
         <authors>Michael W. Powell</authors>
         <owners>$author$</owners>
         <projectUrl>http://github.com/mwpowellhtx/Kingdom.Castle.Extensions</projectUrl>
