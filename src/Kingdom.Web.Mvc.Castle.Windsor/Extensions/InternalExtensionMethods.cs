@@ -21,22 +21,68 @@ namespace Kingdom.Web.Mvc
             propertyInfo.SetValue(obj, container.Resolve(propertyInfo.PropertyType));
         }
 
+        private static void InjectObjectField<T>(this IWindsorContainer container, T obj,
+            FieldInfo fieldInfo)
+        {
+            fieldInfo.SetValue(obj, container.Resolve(fieldInfo.FieldType));
+        }
+
         /// <summary>
-        /// Injects the Object corresponding with the <typeparamref name="T"/>.
+        /// <see cref="Public"/>, <see cref="NonPublic"/>, <see cref="Instance"/>
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        private const BindingFlags PublicNonPublicInstance = Public | NonPublic | Instance;
+
+        /// <summary>
+        /// Injects the <paramref name="obj"/> corresponding to the given
+        /// <paramref name="baseFlags"/>.
+        /// </summary>
         /// <param name="container"></param>
         /// <param name="obj"></param>
+        /// <param name="baseFlags"></param>
         /// <returns></returns>
-        internal static IWindsorContainer InjectObject<T>(this IWindsorContainer container, T obj)
+        /// <see cref="InjectAttribute"/>
+        /// <see cref="InjectObject{TAttribute}"/>
+        internal static IWindsorContainer InjectObject(this IWindsorContainer container,
+            object obj, BindingFlags baseFlags = PublicNonPublicInstance)
         {
-            const BindingFlags propertyBindingAttr = Public | Instance | SetProperty;
+            return container.InjectObject<InjectAttribute>(obj, baseFlags);
+        }
 
-            var properties = obj.GetType().GetProperties(propertyBindingAttr);
+        /// <summary>
+        /// Injects the <paramref name="obj"/> corresponding to the given
+        /// <paramref name="baseFlags"/>, defaulting to <see cref="Public"/>,
+        /// <see cref="NonPublic"/>, <see cref="Instance"/>, <see cref="SetProperty"/>,
+        /// and <see cref="SetField"/>.
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="container"></param>
+        /// <param name="obj"></param>
+        /// <param name="baseFlags"></param>
+        /// <returns></returns>
+        internal static IWindsorContainer InjectObject<TAttribute>(this IWindsorContainer container,
+            object obj, BindingFlags baseFlags = PublicNonPublicInstance)
+            where TAttribute : Attribute, IInjectionAttribute
+        {
+            if (obj == null) return container;
 
-            foreach (var property in properties.Where(p => p.HasAttribute<InjectAttribute>()))
+            var objType = obj.GetType();
+
             {
-                container.InjectObjectProperty(obj, property);
+                var properties = objType.GetProperties(baseFlags | SetProperty);
+
+                foreach (var property in properties.Where(p => p.HasAttribute<TAttribute>()))
+                {
+                    container.InjectObjectProperty(obj, property);
+                }
+            }
+
+            {
+                var fields = objType.GetFields(baseFlags | SetField);
+
+                foreach (var field in fields.Where(f => f.HasAttribute<TAttribute>()))
+                {
+                    container.InjectObjectField(obj, field);
+                }
             }
 
             return container;
